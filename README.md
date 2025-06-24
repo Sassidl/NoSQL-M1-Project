@@ -64,3 +64,31 @@ How to connect to Cassandra and run the CQL commands:
    ```
 
 
+
+## Part 2: MongoDB equivalent
+
+This part reproduces the workflow of Part&nbsp;1 but uses MongoDB instead of Cassandra.
+
+### Cleaning the dataset
+
+Run the same script as before:
+
+```bash
+python clean_dataset.py companies2.json
+```
+
+This will produce `cleaned-companies2.json` in the `Part2` folder.
+
+### Importing into MongoDB
+
+1. Fill the `.env` file with your MongoDB connection details:
+   ```
+   MONGO_URI=mongodb://localhost:27017
+   DB_NAME=project
+   COLLECTION_NAME=companies
+   ```
+2. Use the `json_to_mongo.py` script to load the cleaned file:
+   ```bash
+   python json_to_mongo.py cleaned-companies2.json
+   ```
+   The script uses `pymongo` and `python-dotenv` to read the configuration and insert all documents into the specified collection.
